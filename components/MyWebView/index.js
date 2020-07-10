@@ -13,7 +13,7 @@ export const MyWebComponent = () => {
 
     const [urlValue, setUrlValue] = useState('');
 
-    const storeData = async (value) => {
+    const setUrlStorage = async (value) => {
         try {
             await AsyncStorage.setItem('url', value)
         } catch (e) {
@@ -21,7 +21,7 @@ export const MyWebComponent = () => {
         }
     }
 
-    const getData = async () => {
+    const getUrlStorage = async () => {
         try {
             const value = await AsyncStorage.getItem('url')
 
@@ -33,11 +33,11 @@ export const MyWebComponent = () => {
     }
 
     useEffect(() => {
-        getData()
+        getUrlStorage()
     }, [])
 
     const navigationStateChange = (navState) => {
-        storeData(navState.url)
+        setUrlStorage(navState.url)
     }
 
     return (
